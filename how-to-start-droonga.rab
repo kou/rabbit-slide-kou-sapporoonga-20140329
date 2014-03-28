@@ -1,4 +1,4 @@
-= Droongaのはじめかた
+= Droongaの\nはじめかた
 
 : author
    須藤功平
@@ -13,14 +13,129 @@
 : theme
    groonga
 
-= 最初のスライド
-
-  * 項目1
-  * 項目2
-  * 項目3
-
-= 二番目のスライド
+= お知らせ1
 
   # image
-  # src = https://raw.github.com/rabbit-shocker/rabbit/master/sample/lavie.png
-  # relative_height = 100
+  # src = images/groonga-logo.svg
+  # relative_width = 100
+
+(('tag:center'))(('tag:x-large'))4.0.1リリース！
+
+= 4.0.1の新機能1
+
+  * adjuster
+    * スコアブースト機能
+    * 使用例: 運営のオススメを上に表示
+  * 重み付きベクター
+    * レコード毎にn個の重みを設定
+    * adjusterと連携するとよい
+
+= 4.0.1の新機能2
+
+  * データベース肥大化抑制
+    * Milkodeユーザーにも効果大なはず
+    * 注意: データベースの再作成が必要
+    * データベースの後方互換性あり
+
+= お知らせ2
+
+  # image
+  # src = images/droonga-logo.svg
+  # relative_width = 100
+
+(('tag:center'))(('tag:x-large'))1.0.1リリース！
+
+= 1.0.1の新機能
+
+  * adjuster対応
+  * 重み付きベクター対応
+  * ユーザー視点の使い勝手向上
+    * grn2drn-schema, droonga-send, ...
+
+(('note:今月は開発者としてよりもユーザーとして触っていたから'))
+
+= 話すこと
+
+  * Droongaとはなにか
+  * Groongaを使おう
+  * Droongaを使おう
+
+= Droongaとはなにか
+
+  # image
+  # src = images/droonga-logo.svg
+  # relative_width = 100
+
+(('tag:center'))((*D*))istributed G((*roonga*))
+
+= Distributed?
+
+スケールアウト可能
+
+= Droonga
+
+スケールアウト可能な\nGroonga
+
+= Groongaが透けて見える
+
+スケールアウト可能な\n((*Groonga*))
+
+= GroongaとDroonga
+
+  * 一部はGroonga != Droonga
+  * 一部はGroonga == Droonga
+
+= Groonga != Droonga
+
+  * APIは違う
+    * DroongaにGroonga互換レイヤーあり
+  * 構成は違う
+    * 1台でDroongaを使っても嬉しくない
+  * 性能特性は違う
+    * 1台で捌ける量→Groongaの方が速い
+
+= Groonga == Droonga
+
+  * クエリーの書き方は同じ
+  * スキーマの考え方は同じ
+  * 検索機能はだいたい同じ
+
+= Droongaをはじめるために
+
+教養として\n
+Groongaを\n
+押さえて\n
+おくべき！
+
+= Groongaを使おう
+
+  * Droongaとはなにか
+  * ((*Groongaを使おう*))
+  * Droongaを使おう
+
+= Groongaはお手軽
+
+  * 1台のマシンで動く
+  * 設定ファイルなしで動く
+  * コマンドラインで動く
+
+= スキーマを作る
+
+  * 検索したいものを((*1つ*))決める
+    * 例: たいやき屋検索ならたいやき屋
+  * 検索したいものの集まりを\n
+    テーブルにする
+    * 例: TaiyakiShopsテーブル
+  * 付加情報をカラムにする
+    * 例: 店舗名、場所、メニューなど
+
+= スキーマ例
+
+  table_create TaiyakiShops \
+    TABLE_HASH_KEY ShortText
+  # 店舗名
+  column_create TaiyakiShops name \
+    COLUMN_SCALAR ShortText
+  # 場所
+  column_create TaiyakiShops location \
+    COLUMN_SCALAR WGS84GeoPoint
