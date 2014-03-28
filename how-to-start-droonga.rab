@@ -1,0 +1,26 @@
+= Droongaのはじめかた
+
+: author
+   須藤功平
+: institution
+   クリアコード
+: content-source
+   全文検索エンジンGroonga勉強会＠札幌 2014/03/29
+: date
+   2014/03/29
+: allotted-time
+   20m
+: theme
+   groonga
+
+= 最初のスライド
+
+  * 項目1
+  * 項目2
+  * 項目3
+
+= 二番目のスライド
+
+  # image
+  # src = https://raw.github.com/rabbit-shocker/rabbit/master/sample/lavie.png
+  # relative_height = 100
