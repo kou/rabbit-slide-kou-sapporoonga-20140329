@@ -54,11 +54,23 @@
 
 (('note:今月は開発者としてよりもユーザーとして触っていたから'))
 
+= 今日の目標
+
+1人以上\n
+Droongaデビュー
+
 = 話すこと
 
-  * Droongaとはなにか
-  * Groongaを使おう
-  * Droongaを使おう
+Droonga\n
+未経験者向け\n
+ヒント\n
+
+= 流れ
+
+  * ((*Droongaとはなにか*))
+  * Groongaの使い方
+  * ↑とDroongaの使い方の違い
+  * Droongaの考え方のイメージ
 
 = Droongaとはなにか
 
@@ -107,17 +119,29 @@ Groongaを\n
 押さえて\n
 おくべき！
 
-= Groongaを使おう
+= Groongaの使い方
 
   * Droongaとはなにか
-  * ((*Groongaを使おう*))
-  * Droongaを使おう
+  * ((*Groongaの使い方*))
+  * ↑とDroongaの使い方の違い
+  * Droongaの考え方のイメージ
 
-= Groongaはお手軽
+= なぜまずGroongaか
+
+(('tag:center'))(('tag:x-large'))(('tag:margin-bottom'))Groongaはお手軽
 
   * 1台のマシンで動く
   * 設定ファイルなしで動く
   * コマンドラインで動く
+
+= Groongaを使う流れ
+
+(('tag:center'))(('note:初心者向けの簡易版'))
+
+  (1) ((*スキーマを作る*))
+  (2) インデックスを作る
+  (3) データを入れる
+  (4) 検索する
 
 = スキーマを作る
 
@@ -139,3 +163,148 @@ Groongaを\n
   # 場所
   column_create TaiyakiShops location \
     COLUMN_SCALAR WGS84GeoPoint
+
+= Groongaを使う流れ: 2
+
+  (1) スキーマを作る
+  (2) ((*インデックスを作る*))
+  (3) データを入れる
+  (4) 検索する
+
+= インデックスを作る
+
+  * 全文検索対象を決める
+    * 例: 店舗名
+  * トークンの集合を格納する\n
+    テーブルを作る
+    * トークン: 最小検索単位
+  * ↑にインデックスカラムを作る
+
+= インデックス例
+
+  # トークン用テーブル
+  # 初心者は常にこれでOK
+  table_create Tokens \
+    TABLE_PAT_KEY ShortText \
+    --default_tokenizer TokenBigram \
+    --normalizer NormalizerAuto
+  # インデックス用テーブル
+  column_create Tokens taiyaki_index \
+    COLUMN_INDEX|WITH_POSITION \
+    TaiyakiShops name
+
+= Groongaを使う流れ: 3
+
+  (1) スキーマを作る
+  (2) インデックスを作る
+  (3) ((*データを入れる*))
+  (4) 検索する
+
+= データを入れる
+
+  * フォーマットはJSON
+    * GroongaのJSONパーサーは緩い
+    * 多少壊れたJSONも受け付ける
+
+= データ例
+
+  load --table TaiyakiShops
+  [
+    {
+      "_key": "sapporo-yanagiya",
+      "name": "札幌の柳屋",
+      "location": "43.11629x141.34855"
+    }
+  ]
+
+= Groongaを使う流れ: 4
+
+  (1) スキーマを作る
+  (2) インデックスを作る
+  (3) データを入れる
+  (4) ((*検索する*))
+
+= 検索する
+
+  * 全文検索対象を指定する
+  * 検索キーワードを指定する
+
+= 検索例
+
+  select TaiyakiShops \
+    --match_columns name \
+    --query "札幌"
+  # [[...], ← レスポンスヘッダー
+  #  [[[1], ← ヒット件数
+  #    ↓ 出力内容のメタデータ
+  #    [["_id","UInt32"],...],
+  #    ↓ マッチしたレコード
+  #    [1,"sapporo-yanagiya","0x0","札幌の柳屋"]]]]
+
+= Groongaを使う流れの再確認
+
+  (1) スキーマを作る
+  (2) インデックスを作る
+  (3) データを入れる
+  (4) 検索する
+
+= 流れ3
+
+  * Droongaとはなにか
+  * Groongaの使い方
+  * ((*↑とDroongaの使い方の違い*))
+  * Droongaの考え方のイメージ
+
+= Droongaを使う流れ
+
+  (1) クラスターを作る ← ((*New*))
+  (2) スキーマを作る
+  (3) インデックスを作る
+  (4) データを入れる
+  (5) 検索する
+
+= クラスターを作る
+
+省略！
+
+= 流れ4
+
+  * Droongaとはなにか
+  * Groongaの使い方
+  * ↑とDroongaの使い方の違い
+  * ((*Droongaの考え方のイメージ*))
+
+= Droongaの構成
+
+
+
+= まとめ1
+
+  * Droonga
+    * スケールアウト可能なGroonga
+    * Groongaと同じことがいろいろある
+    * Groongaの理解が役立つ
+
+= まとめ2
+
+  * Groongaの使い方
+    (1) スキーマを作る
+    (2) インデックスを作る
+    (3) データを入れる
+    (4) 検索する
+
+= まとめ3
+
+  * Droongaの使い方
+    (1) クラスターを作る
+    (2) 以下、Groongaと同じ
+
+= まとめ4
+
+  * Droongaの考え方
+
+= 今日の目標の確認
+
+1人以上\n
+Droongaデビュー\n
+(('note:を見据えてGroongaデビュー'))
