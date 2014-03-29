@@ -13,6 +13,14 @@
 : theme
    groonga
 
+= この勉強会とこの話の関連
+
+  * 勉強会
+    * Groongaの利用事例を募集
+  * この話
+    * Groongaを使ったプロダクト\n
+      Droongaの話
+
 = お知らせ1
 
   # image
@@ -188,7 +196,7 @@ Groongaを\n
     TABLE_PAT_KEY ShortText \
     --default_tokenizer TokenBigram \
     --normalizer NormalizerAuto
-  # インデックス用テーブル
+  # インデックスカラム
   column_create Tokens taiyaki_index \
     COLUMN_INDEX|WITH_POSITION \
     TaiyakiShops name
@@ -239,7 +247,7 @@ Groongaを\n
   #    ↓ 出力内容のメタデータ
   #    [["_id","UInt32"],...],
   #    ↓ マッチしたレコード
-  #    [1,"sapporo-yanagiya","0x0","札幌の柳屋"]]]]
+  #    [1,"sapporo-yanagiya","...","札幌の柳屋"]]]]
 
 = Groongaを使う流れの再確認
 
@@ -265,6 +273,7 @@ Groongaを\n
 
 = クラスターを作る
 
+(('note:大事だけど時間がないので'))\n
 省略！
 
 = 流れ4
@@ -276,7 +285,11 @@ Groongaを\n
 
 = Droongaの構成
 
+  # image
+  # src = images/droonga-system.png
+  # relative_width = 80
 
+(('tag:center'))(('note:http://droonga.org/overview/'))
 
 = まとめ1
 
@@ -301,7 +314,11 @@ Groongaを\n
 
 = まとめ4
 
-  * Droongaの考え方
+(('tag:center'))Droongaの構成
+
+  * n個のGroongaで\n
+    大きなGroongaを構成
+  * Droonga=大きなGroonga
 
 = 今日の目標の確認
 

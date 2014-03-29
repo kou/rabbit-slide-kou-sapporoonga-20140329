@@ -11,15 +11,7 @@ Droongaを使いはじめる方法を紹介します。
 
 images/以下にある以下のファイル。
 
-  * droonga-icon.svg
-  * droonga-icon-full-size.svg
-  * droonga-logo.svg
-  * groonga-icon.svg
-  * groonga-icon-full-size.svg
   * groonga-logo.svg
-  * rroonga-icon.svg
-  * rroonga-icon-full-size.svg
-  * rroonga-logo.svg
 
 CC BY-SA 3.0
 
@@ -27,18 +19,18 @@ CC BY-SA 3.0
 
   * Groongaプロジェクト
 
-==== Groonga関連プロジェクトの画像を使った画像
+==== Droonga関連プロジェクトの画像
 
 images/以下にある以下のファイル。
 
-  * ...
+  * droonga-logo.svg
+  * droonga-system.png
 
 CC BY-SA 3.0
 
 原著作者名は以下の通りです。
 
-  * Groongaプロジェクト
-  * 須藤功平（またはKouhei Sutou）
+  * Droongaプロジェクト
 
 === その他
 
